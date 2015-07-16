@@ -19,9 +19,8 @@ public class PlatformController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-
-        PlatformMinHeight = transform.position.y - 2;
-        PlatformMaxHeight = transform.position.y + 2;
+        PlatformMinHeight = transform.Find("Min Height").position.y;
+        PlatformMaxHeight = transform.Find("Max Height").position.y;
 	}
 	
 	// Update is called once per frame
@@ -29,10 +28,11 @@ public class PlatformController : MonoBehaviour {
         PlatformSpeed += PlatformSpeed * PlatformSpeedRamp * Time.deltaTime;
         Platform.PlatformSpeed = PlatformSpeed;
 
-        PlatformSpawnTime -= Time.deltaTime;
+        PlatformSpawnTime -= Time.deltaTime * GameSpeed.Speed;
 
         if (PlatformSpawnTime < 0) {
             float platformWidth = Mathf.Lerp(PlatformMinLength, PlatformMaxLength, Random.value);
+            platformWidth += Mathf.Sqrt(PlatformSpeed);
 
             PlatformSpawnTime = platformWidth / PlatformSpeed + Mathf.Lerp(0.5f, 1.1f, Random.value);
 

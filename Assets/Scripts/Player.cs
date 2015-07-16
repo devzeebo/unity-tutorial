@@ -26,9 +26,20 @@ public class Player : MonoBehaviour {
         if (Input.GetKeyUp(KeyCode.Space)) {
             IsJumping = false;
         }
+
+        if (Input.GetKey(KeyCode.LeftShift)) {
+            GameSpeed.Speed = 2f;
+        } else {
+            if (Input.GetKey(KeyCode.LeftControl)) {
+                GameSpeed.Speed = 0.5f;
+            } else {
+                GameSpeed.Speed = 1f;
+            }
+        }
 	}
 
     void FixedUpdate() {
+
         if (IsJumping) {
 
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * _jumpStrength);

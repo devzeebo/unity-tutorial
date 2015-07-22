@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Player : MonoBehaviour {
 
-    public Animator animator;
+    private Animator animator;
 
     public float JumpStrength;
     public float JumpDecay;
